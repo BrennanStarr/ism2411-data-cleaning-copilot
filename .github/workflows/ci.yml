@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run data cleaning script
+        run: |
+          python src/data_cleaning.py
+
+      - name: List processed files
+        run: ls -la data/processed || true
+
+      - name: Upload cleaned CSV
+        uses: actions/upload-artifact@v4
+        with:
+          name: cleaned-csv
+          path: data/processed/sales_data_clean.csv
