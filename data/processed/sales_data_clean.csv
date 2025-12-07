@@ -1,0 +1,8 @@
+product,category,price,quantity,date
+Widget A,Gadgets,10.0,2,2025-11-01
+Widget B,Widgets,15.0,5,2025-11-02
+Thing D,Misc,9.99,3,2025-11-04
+Widget F,Gadgets,8.0,1,2025-11-06
+Unknown,,9.99,1,2025-11-07
+BadPrice,Misc,9.99,2,2025-11-08
+TrailingSpace,Misc,7.0,4,2025-11-09
